@@ -1,5 +1,6 @@
 package com.example.yazlab2_proje3;
 
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -10,11 +11,11 @@ import java.util.Set;
 
 @Node("Arastirmaci")
 public class ArastirmaciEntity {
-    @Id
-    public final Long arastirmaciID;
+    @Id @GeneratedValue
+    public Long arastirmaciID;
 
-    public final String arastirmaciAdi;
-    public final String arastirmaciSoyadi;
+    public String arastirmaciAdi;
+    public String arastirmaciSoyadi;
 
     @Relationship(type = "Yayin Yazari")
     public List<YayinEntity> yayinlar;
@@ -29,6 +30,10 @@ public class ArastirmaciEntity {
         this.arastirmaciSoyadi = arastirmaciSoyadi;
         this.yayinlar = yayinlar;
         this.ortakArastirmacilar = ortakArastirmacilar;
+    }
+
+    public ArastirmaciEntity(){
+
     }
 
     public Long getArastirmaciID() {
@@ -49,6 +54,22 @@ public class ArastirmaciEntity {
 
     public List<ArastirmaciEntity> getOrtakArastirmacilar() {
         return ortakArastirmacilar;
+    }
+
+    public void setArastirmaciAdi(String arastirmaciAdi) {
+        this.arastirmaciAdi = arastirmaciAdi;
+    }
+
+    public void setArastirmaciSoyadi(String arastirmaciSoyadi) {
+        this.arastirmaciSoyadi = arastirmaciSoyadi;
+    }
+
+    public void setYayinlar(List<YayinEntity> yayinlar) {
+        this.yayinlar = yayinlar;
+    }
+
+    public void setOrtakArastirmacilar(List<ArastirmaciEntity> ortakArastirmacilar) {
+        this.ortakArastirmacilar = ortakArastirmacilar;
     }
 
 }

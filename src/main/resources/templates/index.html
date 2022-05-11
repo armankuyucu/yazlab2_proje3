@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Neo4j</title>
 </head>
 <body>
-
+    <h1>Yönetici Paneli</h1>
+    <form method="post" action="">
+        <div>
+            arastirmaciAdi: <input type="text" th:field="${newArastirmaci.arastirmaciAdi}"/>
+            arastirmaciSoyadi: <input type="text" th:field="${newArastirmaci.arastirmaciSoyadi}"/>
+        </div>
+        <div>
+            <button type="submit">Create Record</button>
+        </div>
+    </form>
+    <div th:each="arastirmaci : ${arastirmacilar}">
+        <span th:text="|${arastirmaci.arastirmaciID} -> ${arastirmaci.arastirmaciAdi} -> ${arastirmaci.arastirmaciSoyadi}"></span>
+    </div>
 </body>
 </html>
