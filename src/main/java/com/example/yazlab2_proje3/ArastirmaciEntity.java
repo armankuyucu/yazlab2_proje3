@@ -5,13 +5,15 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Node("Arastirmaci")
 public class ArastirmaciEntity {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     public Long arastirmaciID;
 
     public String arastirmaciAdi;
@@ -20,6 +22,12 @@ public class ArastirmaciEntity {
     @Relationship(type = "Yayin Yazari")
     public List<YayinEntity> yayinlar;
 
+//    public void yayinlar(YayinEntity yayin){
+//        if(yayinlar == null) {
+//            yayinlar = new ArrayList<>();
+//        }
+//        yayinlar.add(yayin);
+//    }
     @Relationship(type = "Ortak Calisir")
     public List<ArastirmaciEntity> ortakArastirmacilar;
 
@@ -32,7 +40,7 @@ public class ArastirmaciEntity {
         this.ortakArastirmacilar = ortakArastirmacilar;
     }
 
-    public ArastirmaciEntity(){
+    public ArastirmaciEntity() {
 
     }
 
@@ -54,6 +62,10 @@ public class ArastirmaciEntity {
 
     public List<ArastirmaciEntity> getOrtakArastirmacilar() {
         return ortakArastirmacilar;
+    }
+
+    public void setArastirmaciID(Long arastirmaciID) {
+        this.arastirmaciID = arastirmaciID;
     }
 
     public void setArastirmaciAdi(String arastirmaciAdi) {

@@ -1,5 +1,6 @@
 package com.example.yazlab2_proje3;
 
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -9,9 +10,10 @@ import java.util.List;
 @Node("Yayin")
 public class YayinEntity {
     @Id
-    public Long YayinID;
-    public String YayinAdi;
-    public Long YayinYili;
+    @GeneratedValue
+    public Long yayinID;
+    public String yayinAdi;
+    public Long yayinYili;
 
     @Relationship(type = "Yayin Turu", direction = Relationship.Direction.INCOMING)
     public List<TurEntity> YayinTuru;
@@ -19,24 +21,27 @@ public class YayinEntity {
     @Relationship(type = "Yayin Yeri", direction = Relationship.Direction.INCOMING)
     public List<TurEntity> YayinYeri;
 
-    public YayinEntity(Long YayinID, String YayinAdi, Long YayinYili, List<TurEntity> YayinTuru, List<TurEntity> YayinYeri){
-        this.YayinID = YayinID;
-        this.YayinAdi = YayinAdi;
-        this.YayinYili = YayinYili;
+    public YayinEntity(Long YayinID, String YayinAdi, Long YayinYili, List<TurEntity> YayinTuru, List<TurEntity> YayinYeri) {
+        this.yayinID = YayinID;
+        this.yayinAdi = YayinAdi;
+        this.yayinYili = YayinYili;
         this.YayinTuru = YayinTuru;
         this.YayinYeri = YayinYeri;
     }
 
-    public Long getYayinID(){
-        return YayinID;
+    public YayinEntity() {
     }
 
-    public String getYayinAdi(){
-        return YayinAdi;
+    public Long getYayinID() {
+        return yayinID;
     }
 
-    public Long getYayinYili(){
-        return YayinYili;
+    public String getYayinAdi() {
+        return yayinAdi;
+    }
+
+    public Long getYayinYili() {
+        return yayinYili;
     }
 
     public List<TurEntity> getYayinTuru() {
@@ -45,6 +50,26 @@ public class YayinEntity {
 
     public List<TurEntity> getYayinYeri() {
         return YayinYeri;
+    }
+
+    public void setYayinID(Long yayinID) {
+        this.yayinID = yayinID;
+    }
+
+    public void setYayinAdi(String yayinAdi) {
+        this.yayinAdi = yayinAdi;
+    }
+
+    public void setYayinYili(Long yayinYili) {
+        this.yayinYili = yayinYili;
+    }
+
+    public void setYayinTuru(List<TurEntity> yayinTuru) {
+        YayinTuru = yayinTuru;
+    }
+
+    public void setYayinYeri(List<TurEntity> yayinYeri) {
+        YayinYeri = yayinYeri;
     }
 
 }
