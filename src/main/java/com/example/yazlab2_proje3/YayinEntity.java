@@ -15,18 +15,16 @@ public class YayinEntity {
     public String yayinAdi;
     public Long yayinYili;
 
-    @Relationship(type = "Yayin Turu", direction = Relationship.Direction.INCOMING)
-    public List<TurEntity> YayinTuru;
+//    @Relationship(type = "Yayin Turu")
+//    public List<TurEntity> yayinTuru;
+//
+//    @Relationship(type = "Yayin Yeri")
+//    public List<TurEntity> yayinYeri;
 
-    @Relationship(type = "Yayin Yeri", direction = Relationship.Direction.INCOMING)
-    public List<TurEntity> YayinYeri;
-
-    public YayinEntity(Long YayinID, String YayinAdi, Long YayinYili, List<TurEntity> YayinTuru, List<TurEntity> YayinYeri) {
+    public YayinEntity(Long YayinID, String YayinAdi, Long YayinYili) {
         this.yayinID = YayinID;
         this.yayinAdi = YayinAdi;
         this.yayinYili = YayinYili;
-        this.YayinTuru = YayinTuru;
-        this.YayinYeri = YayinYeri;
     }
 
     public YayinEntity() {
@@ -44,13 +42,13 @@ public class YayinEntity {
         return yayinYili;
     }
 
-    public List<TurEntity> getYayinTuru() {
-        return YayinTuru;
-    }
-
-    public List<TurEntity> getYayinYeri() {
-        return YayinYeri;
-    }
+//    public List<TurEntity> getYayinTuru() {
+//        return yayinTuru;
+//    }
+//
+//    public List<TurEntity> getYayinYeri() {
+//        return yayinYeri;
+//    }
 
     public void setYayinID(Long yayinID) {
         this.yayinID = yayinID;
@@ -64,12 +62,12 @@ public class YayinEntity {
         this.yayinYili = yayinYili;
     }
 
-    public void setYayinTuru(List<TurEntity> yayinTuru) {
-        YayinTuru = yayinTuru;
-    }
-
-    public void setYayinYeri(List<TurEntity> yayinYeri) {
-        YayinYeri = yayinYeri;
-    }
+//    public void setYayinTuru(List<TurEntity> yayinTuru) {
+//        this.yayinTuru = yayinTuru;
+//    }
+//
+//    public void setYayinYeri(List<TurEntity> yayinYeri) {
+//        this.yayinYeri = yayinYeri;
+//    }
 
 }
