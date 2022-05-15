@@ -13,10 +13,14 @@ public interface YayinRepository extends Neo4jRepository<YayinEntity, Long> {
 
     Iterable<YayinEntity> findYayinByYayinYili(Long yayinYili);
 
-    @Query("match (a:Arastirmaci {arastirmaciAdi:$arastirmaciAdi})-[r:YAYIN_YAZARI]->(y:Yayin) return y")
-    Iterable<YayinEntity> getYayinEntitiesByArastirmaciAdi(String arastirmaciAdi);
+    @Query("match (a:Arastirmaci)-[r:YAYIN_YAZARI]->(y:Yayin) where a.arastirmaciAdi CONTAINS $arastirmaciAdi return y")
+    List<YayinEntity> getYayinEntitiesByArastirmaciAdi(String arastirmaciAdi);
 
-    @Query("match (a:Arastirmaci {arastirmaciSoyadi:$arastirmaciSoyadi})-[r:YAYIN_YAZARI]->(y:Yayin) return y")
-    Iterable<YayinEntity> getYayinEntitiesByArastirmaciSoyadi(String arastirmaciSoyadi);
+    @Query("match (a:Arastirmaci)-[r:YAYIN_YAZARI]->(y:Yayin) where a.arastirmaciSoyadi CONTAINS $arastirmaciSoyadi return y")
+    List<YayinEntity> getYayinEntitiesByArastirmaciSoyadi(String arastirmaciSoyadi);
+
+    @Query("match (y:Yayin)-[r:YAYINLANIR]->(t:Tur) where t.yayinTuru CONTAINS $yayinTuru return y")
+    List<YayinEntity> getYayinEntitiesByYayinTuru(String yayinTuru);
+
 
 }

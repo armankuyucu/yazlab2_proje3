@@ -19,7 +19,7 @@ public interface ArastirmaciRepository extends Neo4jRepository<ArastirmaciEntity
     @Query("MATCH(a:Arastirmaci {arastirmaciAdi:$arastirmaci}),(b:Yayin {yayinAdi:$yayin}) MERGE (a)-[r:YAYIN_YAZARI]->(b)")
     ArastirmaciEntity createArastirmaciYayinRelationship(String arastirmaci, String yayin);
 
-    @Query("MATCH (a:Arastirmaci)-[r:YAYIN_YAZARI]->(y:Yayin {yayinAdi:$yayinAdi}) return a")
+    @Query("MATCH (a:Arastirmaci)-[r:YAYIN_YAZARI]->(y:Yayin) where y.yayinAdi CONTAINS $yayinAdi return a")
     List<ArastirmaciEntity> getArastirmaciEntitiesByYayinAdi(String yayinAdi);
     @Query("MATCH (a:Arastirmaci)-[r:YAYIN_YAZARI]->(y:Yayin {yayinYili:$yayinYili}) return a")
     List<ArastirmaciEntity> getArastirmaciEntitiesByYayinYili(Long yayinYili);

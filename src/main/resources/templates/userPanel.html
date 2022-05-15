@@ -22,36 +22,10 @@
 <body>
 <div class="container">
 
-    <!--        <form th:object="${arastirmacilar}" method="post" action="userPanel/arastirmacilar">-->
-    <!--            <div>-->
-    <!--                <input type="text" name="subject" th:field="*{arastirmacilar}">-->
-    <!--                <input type="submit" value="Search">-->
-    <!--            </div>-->
-    <!--        </form>-->
-
-
-<!--    <form action="/results" method="post">-->
-<!--        <div alight="left">-->
-<!--            <tr>-->
-<!--                <label class="form-label" >Employee ID</label>-->
-<!--                <td>-->
-<!--                    <input type="text" th:field="${arastirmaci.arastirmaciAdi}" class="form-control" placeholder="Employee ID" />-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--        </div>-->
-
-<!--        <br>-->
-<!--        <tr>-->
-<!--            <td colspan="2"><button type="submit" class="btn btn-info">Search</button> </td>-->
-<!--        </tr>-->
-<!--    </form>-->
-
-<!--    </form>-->
-
     <form class="form-horizontal" action="/results" method="post">
         <div class="form-group mb-1">
             <div style="margin-top: 50px" class="row mb-3">
-                <div class="col-1 col">
+                <div class="col-2 col">
                     <label class="sr-only">Araştırmacı Adı</label>
                 </div>
                 <div class="col-4 col"><input class="col-lg-10" th:field="${arastirmaci.arastirmaciAdi}"></div>
@@ -69,7 +43,7 @@
     <form class="form-horizontal" action="/results" method="post">
         <div class="form-group mb-1">
             <div style="margin-top: 50px" class="row mb-3">
-                <div class="col-1 col">
+                <div class="col-2 col">
                     <label class="sr-only">Araştırmacı Soyadı</label>
                 </div>
                 <div class="col-4 col"><input class="col-lg-10" th:field="${arastirmaci.arastirmaciSoyadi}"></div>
@@ -84,20 +58,10 @@
         </div>
     </form>
 
-
-    <!--        <div alight="left">-->
-<!--            <tr>-->
-<!--                <label class="form-label" >Employee Name</label>-->
-<!--                <td>-->
-<!--                    <input type="text" th:field="${newArastirmaci.arastirmaciAdi}" class="form-control" placeholder="Employee Name" />-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--        </div>-->
-
     <form class="form-horizontal" action="/results" method="post">
         <div class="form-group mb-1">
             <div style="margin-top: 50px" class="row mb-3">
-                <div class="col-1 col">
+                <div class="col-2 col">
                     <label class="sr-only">Yayın Adı</label>
                 </div>
                 <div class="col-4 col"><input class="col-lg-10" th:field="${yayin.yayinAdi}"></div>
@@ -114,7 +78,7 @@
 
     <form class="form-horizontal" method="post" action="/results">
         <div style="margin-top: 50px" class="row mb-3">
-            <div class="col-1 col">
+            <div class="col-2 col">
                 <label class="sr-only">Yayın Yılı</label>
             </div>
             <div class="col-4 col"><input class="col-lg-10" th:field="${yayin.yayinYili}"></div>
@@ -127,6 +91,23 @@
             </div>
         </div>
     </form>
+
+    <form class="form-horizontal" method="post" action="/results">
+        <div style="margin-top: 50px" class="row mb-3">
+            <div class="col-2 col">
+                <label class="sr-only">Yayın Türü</label>
+            </div>
+            <div class="col-4 col"><input class="col-lg-10" th:field="${tur.yayinTuru}"></div>
+            <div class="col-4 col">
+                <div class="col-lg-1">
+                    <button style="btn: btn-success btn-lg float-right" type="submit"
+                            class="btn btn-primary">Ara
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
 </div>
 </body>
 </html>
