@@ -4,9 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -20,9 +23,22 @@ public class MainController {
         this.turRepository = turRepository;
     }
 
-    @GetMapping("/")
-    public String indexPage() {
-        return "index";
+
+    @GetMapping(value = {"/userPanel",""})
+    public String userPanel(Model model){
+        List<ArastirmaciEntity> arastirmacilar = arastirmaciRepository.findAll();
+        List<YayinEntity> yayinlar = yayinRepository.findAll();
+        List<TurEntity> turler = turRepository.findAll();
+        model.addAttribute("arastirmacilar", arastirmacilar);
+        model.addAttribute("yayinlar", yayinlar);
+        model.addAttribute("turler", turler);
+        model.addAttribute("arastirmaci",new ArastirmaciEntity());
+        return "userPanel";
+    }
+
+    @GetMapping("/userPanel/{arastirmaciAdi}")
+    public Iterable<ArastirmaciEntity> findArastirmaciByArastirmaciAdiLike(@PathVariable String arastirmaciAdi) {
+        return arastirmaciRepository.findArastirmaciByArastirmaciAdiLike(arastirmaciAdi);
     }
 
     @GetMapping("/adminPanel")
@@ -36,10 +52,23 @@ public class MainController {
         model.addAttribute("turler", turler);
 
         model.addAttribute("arastirmaci", new ArastirmaciEntity());
+        model.addAttribute("newArastirmaci", new ArastirmaciEntity());
+
         model.addAttribute("yayin", new YayinEntity());
         model.addAttribute("tur", new TurEntity());
 
         return "adminPanel";
+    }
+
+    @PostMapping("/userPanel/arastirmacilar")
+    public String searchByArastirmaci(Model model, ArastirmaciEntity arastirmaci) {
+//        Iterable<ArastirmaciEntity> newArastirmaci = arastirmaciRepository.findArastirmaciByArastirmaciAdiLike(arastirmacilar);
+//        if(newArastirmaci != null)
+//            model.addAttribute("newArastirmaci", newArastirmaci);
+//        else
+//            System.out.println("NULL !!!!!!!!!!!");
+        System.out.println("ARASTIRMACI ADI: " + arastirmaci.arastirmaciAdi);
+        return "redirect:/userPanel";
     }
 
     @PostMapping("/adminPanel")

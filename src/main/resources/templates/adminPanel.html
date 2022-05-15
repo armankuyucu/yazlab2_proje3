@@ -5,6 +5,22 @@
     <title>Yönetici Paneli</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/userPanel" class="nav-link px-3 link-primary">Kullanıcı Paneli</a></li>
+
+                <li><a href="/adminPanel" class="nav-link px-3 link-primary">Yönetici Paneli</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <a href="/logout" class="btn btn-info" role="button">Çıkış yap</a>
+            </div>
+        </header>
+    </div>
+
 </head>
 <body>
 <div class="container">
@@ -18,16 +34,59 @@
             <div class="row mt-3">
                 <label for="arastirmaciSoyadi" class="col-md-2">Araştırmacı Soyadı</label>
                 <input id="arastirmaciSoyadi" class="col-md-3" type="text" th:field="${arastirmaci.arastirmaciSoyadi}"/>
+                <button type="submit" class="btn btn-primary btn-sm col-md-auto ms-3">Araştırmacı Ekle</button>
             </div>
-            <button id="arastirmaciEkle" type="submit" class="btn btn-primary btn-sm mt-3">Araştırmacı Ekle</button>
         </div>
     </form>
-<!--Arastirmaci Ortak Calisma İliskisi-->
-    <form method="post" action="/adminPanel/arastirmaciColleague" class="form-horizontal mt-3">
-        <div class="container">
+
+    <!--    <div class="mt-3" th:each="arastirmaci : ${arastirmacilar}">-->
+    <!--        <span th:text="|${arastirmaci.arastirmaciID} -> ${arastirmaci.arastirmaciAdi} -> ${arastirmaci.arastirmaciSoyadi}"></span>-->
+    <!--    </div>-->
+    <!--Yayin-->
+    <form method="post" action="/adminPanel/yayin" class="form-horizontal">
+        <div class="container mt-5">
+            <div class="row mt-3">
+                <label for="yayinAdi" class="col-md-2">Yayın Adı</label>
+                <input id="yayinAdi" class="col-md-3" type="text" th:field="${yayin.yayinAdi}"/>
+            </div>
+            <div class="row mt-3">
+                <label for="yayinYili" class="col-md-2">Yayın Yılı</label>
+                <input id="yayinYili" class="col-md-3" type="text" th:field="${yayin.yayinYili}"/>
+                <button type="submit" class="btn btn-primary btn-sm col-md-auto ms-3">Yayın Ekle</button>
+            </div>
+        </div>
+    </form>
+
+    <!--    <div class="mt-3" th:each="yayin : ${yayinlar}">-->
+    <!--        <span th:text="|${yayin.yayinID} -> ${yayin.yayinAdi} -> ${yayin.yayinYili}"></span>-->
+    <!--    </div>-->
+    <!--Tur-->
+    <form method="post" action="/adminPanel/tur" class="form-horizontal">
+        <div class="container mt-5">
+            <div class="row mt-3">
+                <label for="yayinTuru" class="col-md-2">Yayın Türü</label>
+                <input id="yayinTuru" class="col-md-3" type="text" th:field="${tur.yayinTuru}"/>
+            </div>
+            <div class="row mt-3">
+                <label for="yayinYeri" class="col-md-2">Yayın Yeri</label>
+                <input id="yayinYeri" class="col-md-3" type="text" th:field="${tur.yayinYeri}"/>
+                <button type="submit" class="btn btn-primary btn-sm col-md-auto ms-3">Tür Ekle</button>
+            </div>
+        </div>
+    </form>
+
+    <!--    <div class="mt-3" th:each="tur : ${turler}">-->
+    <!--        <span th:text="|${tur.turID} -> ${tur.yayinTuru} -> ${tur.yayinYeri}"></span>-->
+    <!--    </div>-->
+
+    <!--Arastirmaci Ortak Calisma İliskisi-->
+    <form method="post" action="/adminPanel/arastirmaciColleague" class="form-horizontal">
+        <div class="container mt-5">
             <div class="row mt-3">
                 <div class="col-lg-4">
-                    <select class="form-control" id="arastirmaciSelect" name="arastirmaciSelect" th:field="${arastirmaci.arastirmaciAdi}">
+                    <select class="form-control" id="arastirmaciSelect" name="arastirmaciSelect"
+                            th:field="${arastirmaci.arastirmaciAdi}" required>
+                        <option value="" selected>Araştırmacı Seçiniz</option>
                         <option th:each="arastirmaci : ${arastirmacilar}"
                                 th:value="${arastirmaci.arastirmaciAdi}"
                                 th:text="${arastirmaci.arastirmaciAdi}+' '+${arastirmaci.arastirmaciSoyadi}"
@@ -35,14 +94,17 @@
                     </select>
                 </div>
                 <div class="col-lg-4">
-                    <select class="form-control" id="arastirmaciSelect2" name="arastirmaciSelect2" th:field="${arastirmaci.arastirmaciAdi}">
+                    <select class="form-control" id="arastirmaciSelect2" name="arastirmaciSelect2"
+                            th:field="${arastirmaci.arastirmaciAdi}" required>
+                        <option value="" selected>Araştırmacı Seçiniz</option>
                         <option th:each="arastirmaci : ${arastirmacilar}"
                                 th:value="${arastirmaci.arastirmaciAdi}"
                                 th:text="${arastirmaci.arastirmaciAdi}+' '+${arastirmaci.arastirmaciSoyadi}"
                         ></option>
                     </select>
                 </div>
-                <button id="arastirmaciColleagueButton" type="submit" class="col btn btn-secondary btn-sm mb-1">Ortak Çalışma İlişkisi Ekle
+                <button id="arastirmaciColleagueButton" type="submit" class="col-md-auto btn btn-secondary btn-sm ms-2">Ortak
+                    Çalışma İlişkisi Ekle
                 </button>
 
             </div>
@@ -52,10 +114,12 @@
 
     <!--Arastirmaci Yayin İliskisi-->
     <form method="post" action="/adminPanel/arastirmaciYayinRelationship" class="form-horizontal">
-        <div class="container">
-            <div class="row mt-3">
+        <div class="container mt-5">
+            <div class="row mt-4">
                 <div class="col-lg-4" th:field="${arastirmacilar}">
-                    <select class="form-control" id="arastirmaciSelect3" name="arastirmaciSelect3" th:field="${arastirmaci.arastirmaciAdi}">
+                    <select class="form-control" id="arastirmaciSelect3" name="arastirmaciSelect3"
+                            th:field="${arastirmaci.arastirmaciAdi}" required>
+                        <option value="" selected>Araştırmacı Seçiniz</option>
                         <option th:each="arastirmaci : ${arastirmacilar}"
                                 th:value="${arastirmaci.arastirmaciAdi}"
                                 th:text="${arastirmaci.arastirmaciAdi}+' '+${arastirmaci.arastirmaciSoyadi}"
@@ -63,14 +127,16 @@
                     </select>
                 </div>
                 <div class="col-lg-4" th:field="${yayinlar}">
-                    <select class="form-control" id="yayinSelect" name="yayinSelect" th:field="${yayin.yayinAdi}">
+                    <select class="form-control" id="yayinSelect" name="yayinSelect" th:field="${yayin.yayinAdi}"
+                            required>
+                        <option value="" selected>Yayın Seçiniz</option>
                         <option th:each="yayin : ${yayinlar}"
                                 th:value="${yayin.yayinAdi}"
                                 th:text="${yayin.yayinAdi}"
-                                ></option>
+                        ></option>
                     </select>
                 </div>
-                <button id="arastirmaciYayinButton" type="submit" class="col btn btn-secondary btn-sm mb-1">Yayın Yazarı
+                <button id="arastirmaciYayinButton" type="submit" class="col-md-auto btn btn-secondary btn-sm ms-2">Yayın Yazarı
                     İlişkisi Ekle
                 </button>
 
@@ -79,50 +145,13 @@
         </div>
     </form>
 
-    <div class="mt-3" th:each="arastirmaci : ${arastirmacilar}">
-        <span th:text="|${arastirmaci.arastirmaciID} -> ${arastirmaci.arastirmaciAdi} -> ${arastirmaci.arastirmaciSoyadi}"></span>
-    </div>
-    <!--Yayin-->
-    <form method="post" action="/adminPanel/yayin" class="form-horizontal mt-4">
-        <label for="yayinAdi" class="col-form-label">Yayın Adı</label>
-        <div class="col mt-2">
-            <input id="yayinAdi" type="text" th:field="${yayin.yayinAdi}"/>
-        </div>
-        <label for="yayinYili" class="col-form-label mt-2">Yayın Yılı</label>
-        <div class="col mt-2">
-            <input id="yayinYili" type="text" th:field="${yayin.yayinYili}"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-sm mt-3">Yayın Ekle</button>
-    </form>
-
-    <div class="mt-3" th:each="yayin : ${yayinlar}">
-        <span th:text="|${yayin.yayinID} -> ${yayin.yayinAdi} -> ${yayin.yayinYili}"></span>
-    </div>
-    <!--Tur-->
-    <form method="post" action="/adminPanel/tur" class="form-horizontal mt-4">
-        <label for="yayinTuru" class="col-form-label">Yayın Türü</label>
-        <div class="col mt-2">
-            <input id="yayinTuru" type="text" th:field="${tur.yayinTuru}"/>
-        </div>
-        <label for="yayinYeri" class="col-form-label mt-2">Yayın Yeri</label>
-        <div class="col mt-2">
-            <input id="yayinYeri" type="text" th:field="${tur.yayinYeri}"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-sm mt-3">Tür Ekle</button>
-    </form>
-
-    <div class="mt-3" th:each="tur : ${turler}">
-        <span th:text="|${tur.turID} -> ${tur.yayinTuru} -> ${tur.yayinYeri}"></span>
-    </div>
-
     <!--Yayin Tur İliskisi-->
     <form method="post" action="/adminPanel/yayinTurRelationship" class="form-horizontal">
-        <div class="container">
-            <div class="row mt-3">
+        <div class="container my-5">
+            <div class="row mt-4">
                 <div class="col-lg-4" th:field="${yayinlar}">
-                    <select class="form-control" id="yayinSelect2" name="yayinSelect" th:field="${yayin.yayinAdi}">
+                    <select class="form-control" id="yayinSelect2" name="yayinSelect" th:field="${yayin.yayinAdi}" required>
+                        <option value="" selected>Yayın Seçiniz</option>
                         <option th:each="yayin : ${yayinlar}"
                                 th:value="${yayin.yayinAdi}"
                                 th:text="${yayin.yayinAdi}"
@@ -130,14 +159,16 @@
                     </select>
                 </div>
                 <div class="col-lg-4" th:field="${turler}">
-                    <select class="form-control" id="arastirmaciSelect4" name="arastirmaciSelect3" th:field="${tur.yayinYeri}">
+                    <select class="form-control" id="arastirmaciSelect4" name="arastirmaciSelect3"
+                            th:field="${tur.yayinYeri}" required>
+                        <option value="" selected>Yayın Yeri Seçiniz</option>
                         <option th:each="tur : ${turler}"
                                 th:value="${tur.yayinYeri}"
                                 th:text="${tur.yayinYeri}"
                         ></option>
                     </select>
                 </div>
-                <button id="yayinTurButton" type="submit" class="col btn btn-secondary btn-sm mb-1">Yayın Yeri
+                <button id="yayinTurButton" type="submit" class="col-md-auto btn btn-secondary btn-sm ms-2">Yayın Yeri
                     İlişkisi Ekle
                 </button>
 

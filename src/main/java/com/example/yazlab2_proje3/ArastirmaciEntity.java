@@ -44,6 +44,14 @@ public class ArastirmaciEntity {
 
     }
 
+    @Override
+    public String toString() {
+        return "ArastirmaciEntity{" +
+                "arastirmaciAdi='" + arastirmaciAdi + '\'' +
+                ", arastirmaciSoyadi='" + arastirmaciSoyadi + '\'' +
+                '}';
+    }
+
     public Long getArastirmaciID() {
         return arastirmaciID;
     }
