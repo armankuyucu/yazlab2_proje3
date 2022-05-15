@@ -12,12 +12,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/userPanel","/");
+        web.ignoring().antMatchers("/userPanel","/","/results","arastirmaci-sonuc","yayin-sonuc","tur-sonuc",
+                "/adminPanel/arastirmaciYayinRelationship","/adminPanel/arastirmaciColleague","/adminPanel/yayin",
+                "/adminPanel/tur", "/adminPanel/arastirmaci","/adminPanel/yayinTurRelationship");
          }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();// We don't need sessions to be created.
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();// We don't need sessions to be created.
+//    }
 
 }

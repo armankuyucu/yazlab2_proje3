@@ -30,23 +30,62 @@
     <!--        </form>-->
 
 
-    <form action="/userPanel/arastirmacilar" method="post">
-        <div alight="left">
-            <tr>
-                <label class="form-label" >Employee ID</label>
-                <td>
-                    <input type="text" th:field="${arastirmaci.arastirmaciAdi}" class="form-control" placeholder="Employee ID" />
-                </td>
-            </tr>
-        </div>
-
-        <br>
-        <tr>
-            <td colspan="2"><button type="submit" class="btn btn-info">Search</button> </td>
-        </tr>
-
-
+<!--    <form action="/results" method="post">-->
 <!--        <div alight="left">-->
+<!--            <tr>-->
+<!--                <label class="form-label" >Employee ID</label>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="${arastirmaci.arastirmaciAdi}" class="form-control" placeholder="Employee ID" />-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </div>-->
+
+<!--        <br>-->
+<!--        <tr>-->
+<!--            <td colspan="2"><button type="submit" class="btn btn-info">Search</button> </td>-->
+<!--        </tr>-->
+<!--    </form>-->
+
+<!--    </form>-->
+
+    <form class="form-horizontal" action="/results" method="post">
+        <div class="form-group mb-1">
+            <div style="margin-top: 50px" class="row mb-3">
+                <div class="col-1 col">
+                    <label class="sr-only">Araştırmacı Adı</label>
+                </div>
+                <div class="col-4 col"><input class="col-lg-10" th:field="${arastirmaci.arastirmaciAdi}"></div>
+                <div class="col-4 col">
+                    <div class="col-lg-1">
+                        <button style="btn: btn-success btn-lg float-right" type="submit"
+                                class="btn btn-primary">Ara
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form class="form-horizontal" action="/results" method="post">
+        <div class="form-group mb-1">
+            <div style="margin-top: 50px" class="row mb-3">
+                <div class="col-1 col">
+                    <label class="sr-only">Araştırmacı Soyadı</label>
+                </div>
+                <div class="col-4 col"><input class="col-lg-10" th:field="${arastirmaci.arastirmaciSoyadi}"></div>
+                <div class="col-4 col">
+                    <div class="col-lg-1">
+                        <button style="btn: btn-success btn-lg float-right" type="submit"
+                                class="btn btn-primary">Ara
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--        <div alight="left">-->
 <!--            <tr>-->
 <!--                <label class="form-label" >Employee Name</label>-->
 <!--                <td>-->
@@ -54,76 +93,35 @@
 <!--                </td>-->
 <!--            </tr>-->
 <!--        </div>-->
-    </form>
 
-    <!--    <form class="form-horizontal" method="post" th:action="@{/userPanel/arastirmacilar}" th:object="${arastirmaci}">-->
-<!--        <div class="form-group mb-1">-->
-<!--            <div style="margin-top: 50px" class="row mb-3">-->
-<!--                <div class="col-1 col">-->
-<!--                    <label class="sr-only">Araştırmacı</label>-->
-<!--                </div>-->
-<!--                <div class="col-4 col"><input class="col-lg-10" th:field="*{arastirmaciAdi} "></div>-->
-<!--                <div class="col-4 col">-->
-<!--                    <div class="col-lg-1">-->
-<!--                        <button style="btn: btn-success btn-lg float-right" type="submit"-->
-<!--                                class="btn btn-primary">Sorgula-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <table style="margin-top: 10px" class="table table-bordered">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col"> Araştırmacı Adi</th>-->
-<!--                <th scope="col"> Araştırmacı Soyadi</th>-->
-<!--                <th scope="col"> Yayın Adı</th>-->
-<!--                <th scope="col"> Yayın Yılı</th>-->
-<!--                <th scope="col"> Yayın Türü</th>-->
-<!--                <th scope="col"> Yayın Yeri</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash;            <tr th:each="arastirmaci : ${arastirmacilar}">&ndash;&gt;-->
-<!--            &lt;!&ndash;                <td th:text="${arastirmaci.arastirmaciAdi}"></td>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <td th:text="${arastirmaci.arastirmaciSoyadi}"></td>&ndash;&gt;-->
-
-<!--            &lt;!&ndash;            </tr>&ndash;&gt;-->
-<!--            <tr th:field="${arastirmaci.arastirmaciSoyadi}">-->
-<!--            </tr>-->
-
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <input th:field="${arastirmaci.arastirmaciSoyadi}"/>-->
-
-    </form>
-
-    <form class="form-horizontal" method="post" action="/userPanel/yayinAdi">
-        <div style="margin-top: 50px" class="row mb-3">
-            <div class="col-1 col">
-                <label class="sr-only">Yayın Adı</label>
-            </div>
-            <div class="col-4 col"><input class="col-lg-10"></div>
-            <div class="col-4 col">
-                <div class="col-lg-1">
-                    <button style="btn: btn-success btn-lg float-right" type="submit"
-                            class="btn btn-primary">Sorgula
-                    </button>
+    <form class="form-horizontal" action="/results" method="post">
+        <div class="form-group mb-1">
+            <div style="margin-top: 50px" class="row mb-3">
+                <div class="col-1 col">
+                    <label class="sr-only">Yayın Adı</label>
+                </div>
+                <div class="col-4 col"><input class="col-lg-10" th:field="${yayin.yayinAdi}"></div>
+                <div class="col-4 col">
+                    <div class="col-lg-1">
+                        <button style="btn: btn-success btn-lg float-right" type="submit"
+                                class="btn btn-primary">Ara
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
 
-    <form class="form-horizontal" method="post" action="/userPanel/yayinYili">
+    <form class="form-horizontal" method="post" action="/results">
         <div style="margin-top: 50px" class="row mb-3">
             <div class="col-1 col">
                 <label class="sr-only">Yayın Yılı</label>
             </div>
-            <div class="col-4 col"><input class="col-lg-10"></div>
+            <div class="col-4 col"><input class="col-lg-10" th:field="${yayin.yayinYili}"></div>
             <div class="col-4 col">
                 <div class="col-lg-1">
                     <button style="btn: btn-success btn-lg float-right" type="submit"
-                            class="btn btn-primary">Sorgula
+                            class="btn btn-primary">Ara
                     </button>
                 </div>
             </div>

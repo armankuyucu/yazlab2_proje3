@@ -9,6 +9,7 @@ public interface ArastirmaciRepository extends Neo4jRepository<ArastirmaciEntity
     ArastirmaciEntity getByArastirmaciAdi(String arastirmaciAdi);
 
     Iterable<ArastirmaciEntity> findArastirmaciByArastirmaciAdiLike(String arastirmaciAdi);
+    Iterable<ArastirmaciEntity> findArastirmaciByArastirmaciSoyadiLike(String arastirmaciSoyadi);
 
     @Query("MATCH(a:Arastirmaci {arastirmaciAdi:$arastirmaci}),(b:Yayin {yayinAdi:$yayin}) MERGE (a)-[r:YAYIN_YAZARI]->(b)")
     ArastirmaciEntity createArastirmaciYayinRelationship(String arastirmaci, String yayin);

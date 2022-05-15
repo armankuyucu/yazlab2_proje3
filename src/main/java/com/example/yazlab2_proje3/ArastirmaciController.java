@@ -35,7 +35,6 @@ public class ArastirmaciController {
 
     @GetMapping("/{arastirmaciAdi}")
     public ArastirmaciEntity getByArastirmaciAdi(@PathVariable String arastirmaciAdi) {
-        System.out.println("ARASTIRMACI ADI: " + arastirmaciAdi);
         return arastirmaciRepository.getByArastirmaciAdi(arastirmaciAdi);
     }
 

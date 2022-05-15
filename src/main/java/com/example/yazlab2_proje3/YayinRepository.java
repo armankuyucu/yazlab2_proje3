@@ -7,4 +7,7 @@ public interface YayinRepository extends Neo4jRepository<YayinEntity, Long> {
     @Query("MATCH(a:Yayin {yayinAdi:$yayin}),(b:Tur {yayinYeri:$tur}) MERGE (a)-[r:YAYINLANIR]->(b)")
     YayinEntity createYayinTurRelationship(String yayin, String tur);
 
+    Iterable<YayinEntity> findYayinByYayinAdiLike(String yayinAdi);
+
+    Iterable<YayinEntity> findYayinByYayinYili(Long yayinYili);
 }

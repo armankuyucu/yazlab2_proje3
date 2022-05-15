@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -33,6 +31,9 @@ public class MainController {
         model.addAttribute("yayinlar", yayinlar);
         model.addAttribute("turler", turler);
         model.addAttribute("arastirmaci",new ArastirmaciEntity());
+        model.addAttribute("yayin",new YayinEntity());
+        model.addAttribute("tur",new TurEntity());
+
         return "userPanel";
     }
 
@@ -60,18 +61,41 @@ public class MainController {
         return "adminPanel";
     }
 
-    @PostMapping("/userPanel/arastirmacilar")
-    public String searchByArastirmaci(Model model, ArastirmaciEntity arastirmaci) {
-//        Iterable<ArastirmaciEntity> newArastirmaci = arastirmaciRepository.findArastirmaciByArastirmaciAdiLike(arastirmacilar);
-//        if(newArastirmaci != null)
-//            model.addAttribute("newArastirmaci", newArastirmaci);
-//        else
-//            System.out.println("NULL !!!!!!!!!!!");
-        System.out.println("ARASTIRMACI ADI: " + arastirmaci.arastirmaciAdi);
+    @PostMapping("/results")
+    public String searchByArastirmaci(Model model, YayinEntity yayin,ArastirmaciEntity arastirmaci) {
+            model.addAttribute("arastirmaciInfo",arastirmaci);
+            if(arastirmaci.getArastirmaciAdi() != null){
+                model.addAttribute("arastirmacilar",arastirmaciRepository.findArastirmaciByArastirmaciAdiLike(arastirmaci.getArastirmaciAdi()));
+                return "arastirmaci-sonuc";
+
+            } else if((arastirmaci.getArastirmaciSoyadi() != null)){
+                model.addAttribute("arastirmacilar",arastirmaciRepository.findArastirmaciByArastirmaciSoyadiLike(arastirmaci.getArastirmaciSoyadi()));
+                return "arastirmaci-sonuc";
+            }
+            else if(yayin.getYayinAdi() != null){
+                model.addAttribute("yayinlar",yayinRepository.findYayinByYayinAdiLike(yayin.getYayinAdi()));
+                return "yayin-sonuc";
+            } else if((yayin.getYayinYili() != null)){
+                System.out.println("yayinYili: " + yayin.getYayinYili());
+                model.addAttribute("yayinlar",yayinRepository.findYayinByYayinYili(yayin.getYayinYili()));
+                return "yayin-sonuc";
+            }
+
+
         return "redirect:/userPanel";
     }
 
-    @PostMapping("/adminPanel")
+    @PostMapping("/arastirmaci-sonuc")
+    public String arastirmaciSonuc(){
+        return "arastirmaci-sonuc";
+    }
+
+    @PostMapping("/yayin-sonuc")
+    public String yayinSonuc(){
+        return "yayin-sonuc";
+    }
+
+    @PostMapping("/adminPanel/arastirmaci")
     public String createArastirmaci(ArastirmaciEntity newArastirmaci) {
         if (newArastirmaci != null)
             arastirmaciRepository.save(newArastirmaci);
