@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -66,18 +67,26 @@ public class MainController {
             model.addAttribute("arastirmaciInfo",arastirmaci);
             if(arastirmaci.getArastirmaciAdi() != null){
                 model.addAttribute("arastirmacilar",arastirmaciRepository.findArastirmaciByArastirmaciAdiLike(arastirmaci.getArastirmaciAdi()));
+                model.addAttribute("arastirmaciYayinlari",yayinRepository.getYayinEntitiesByArastirmaciAdi(arastirmaci.getArastirmaciAdi()));
+                for (YayinEntity arastirmaciYayin: yayinRepository.getYayinEntitiesByArastirmaciAdi(arastirmaci.getArastirmaciAdi())) {
+                    System.out.println("arastirmaci yayin: " + arastirmaciYayin.getYayinAdi());
+                }
                 return "arastirmaci-sonuc";
 
             } else if((arastirmaci.getArastirmaciSoyadi() != null)){
                 model.addAttribute("arastirmacilar",arastirmaciRepository.findArastirmaciByArastirmaciSoyadiLike(arastirmaci.getArastirmaciSoyadi()));
+                model.addAttribute("arastirmaciYayinlari",yayinRepository.getYayinEntitiesByArastirmaciSoyadi(arastirmaci.getArastirmaciSoyadi()));
                 return "arastirmaci-sonuc";
             }
             else if(yayin.getYayinAdi() != null){
                 model.addAttribute("yayinlar",yayinRepository.findYayinByYayinAdiLike(yayin.getYayinAdi()));
+                model.addAttribute("yayinYazari",removeDuplicateArastirmaciEntities(arastirmaciRepository.getArastirmaciEntitiesByYayinAdi(yayin.getYayinAdi())));
+//                model.addAttribute("yayinYazari",arastirmaciRepository.getArastirmaciEntitiesByYayinAdi(yayin.getYayinAdi()));
                 return "yayin-sonuc";
             } else if((yayin.getYayinYili() != null)){
-                System.out.println("yayinYili: " + yayin.getYayinYili());
                 model.addAttribute("yayinlar",yayinRepository.findYayinByYayinYili(yayin.getYayinYili()));
+                model.addAttribute("yayinYazari",removeDuplicateArastirmaciEntities(arastirmaciRepository.getArastirmaciEntitiesByYayinYili(yayin.getYayinYili())));
+//                model.addAttribute("yayinYazari",arastirmaciRepository.getArastirmaciEntitiesByYayinYili(yayin.getYayinYili()));
                 return "yayin-sonuc";
             }
 
@@ -85,6 +94,16 @@ public class MainController {
         return "redirect:/userPanel";
     }
 
+    public List<ArastirmaciEntity> removeDuplicateArastirmaciEntities(List<ArastirmaciEntity> arastirmaciEntities){
+        for (int i=0;i<arastirmaciEntities.size()-1;i++) {
+            for(int j=0;j<arastirmaciEntities.size()-1;j++)
+            if(arastirmaciEntities.get(i).getArastirmaciAdi().equals(arastirmaciEntities.get(j).getArastirmaciAdi())){
+                System.out.println("SİLİNEN: " + arastirmaciEntities.get(j));
+                arastirmaciEntities.remove(arastirmaciEntities.get(j));
+            }
+        }
+        return arastirmaciEntities;
+    }
     @PostMapping("/arastirmaci-sonuc")
     public String arastirmaciSonuc(){
         return "arastirmaci-sonuc";
@@ -144,4 +163,9 @@ public class MainController {
         turRepository.save(newTur);
         return "redirect:/adminPanel";
     }
+
+//    @Query("match (a:Arastirmaci {arastirmaciAdi:$arastirmaciAdi})-[r:YAYIN_YAZARI]->(y:Yayin) return $y")
+//    Iterable<YayinEntity> findByYayinRelationship(@PathVariable String arastirmaciAdi,@PathVariable Iterable<YayinEntity> y){
+//        return y;
+//    }
 }

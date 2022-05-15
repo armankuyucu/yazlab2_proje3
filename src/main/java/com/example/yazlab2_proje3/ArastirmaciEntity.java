@@ -19,7 +19,7 @@ public class ArastirmaciEntity {
     public String arastirmaciAdi;
     public String arastirmaciSoyadi;
 
-    @Relationship(type = "Yayin Yazari")
+    @Relationship(type = "YAYIN_YAZARI")
     public List<YayinEntity> yayinlar;
 
 //    public void yayinlar(YayinEntity yayin){

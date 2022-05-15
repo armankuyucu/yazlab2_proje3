@@ -23,21 +23,39 @@
 </head>
 <body>
 <!--            <p th:text="${newArastirmaci.arastirmaciSoyadi}">P tag</p>-->
-        <table style="margin-top: 10px" class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col"> Araştırmacı Adı</th>
-                <th scope="col"> Araştırmacı Soyadı</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="arastirmaci : ${arastirmacilar}">
-                <td th:text="${arastirmaci.arastirmaciAdi}"></td>
-                <td th:text="${arastirmaci.arastirmaciSoyadi}"></td>
+<table style="margin-top: 10px" class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col"> Araştırmacı Adı</th>
+        <th scope="col"> Araştırmacı Soyadı</th>
+        <th scope="col"> Yayın Adı</th>
+        <th scope="col"> Yayın Yılı</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="arastirmaci : ${arastirmacilar}">
+        <td th:text="${arastirmaci.arastirmaciAdi}"></td>
+        <td th:text="${arastirmaci.arastirmaciSoyadi}"></td>
 
-            </tr>
-            </tbody>
-        </table>
+    </tr>
+    </tbody>
+</table>
+
+<table style="margin-top: 10px" class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col"> Yayın Adı</th>
+        <th scope="col"> Yayın Yılı</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="yayin : ${arastirmaciYayinlari}">
+        <td th:text="${yayin.yayinAdi}"></td>
+        <td th:text="${yayin.yayinYili}"></td>
+    </tr>
+    </tbody>
+</table>
+
 
 <!--        <table style="margin-top: 10px" class="table table-bordered">-->
 <!--            <thead>-->
@@ -56,6 +74,6 @@
 <!--        </table>-->
 
 <!--            <input th:field="${arastirmaci.arastirmaciSoyadi}"/>-->
-    </div>
+</div>
 </body>
 </html>
